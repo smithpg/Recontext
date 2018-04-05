@@ -1,6 +1,6 @@
 # Recontext
 
-A Chrome extension for replacing quotations with silly nonsense from the subreddit /r/nocontext. Be warned: the replacements are often obscene. 
+A Chrome extension for replacing quotations with silly nonsense randomly selected from the subreddit /r/nocontext. Be warned: the replacements are often obscene. 
 
 ## Try it for yourself
 
