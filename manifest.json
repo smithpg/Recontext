@@ -1,0 +1,29 @@
+{
+ 	"manifest_version": 2,
+	
+	"name": "Recontext",
+	
+	"description": "This extension replaces full sentence quotations in the text of a webpage with random post titles from /r/nocontext.",
+ 	
+	"version": "1.0",
+
+	"background": {
+		"scripts": [
+		  "popup.js"
+		],
+		"persistent": true
+	},
+	
+	"browser_action": {
+		 "default_title": "Click for Confusion!",
+		 "default_icon": "icon.png"
+	 },
+	 
+	 "permissions": [
+		"activeTab",
+		"storage",
+		"https://*/*",
+		"http://*/*",
+		"tabs"
+	 ]
+}
