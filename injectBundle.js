@@ -14,7 +14,7 @@ function getRandomPost(){
   });
 }
 
-async function getValidPost(){
+async function getValidPostTitle(){
   var title;
 
   title = await getRandomPost();
@@ -135,12 +135,12 @@ var containsQuotes = textElements.filter(function(elem){
 if(containsQuotes.length > 0)
 {
   containsQuotes.forEach(function(elem){
-    // replace the original quotation with a post title from /r/noContext : 
+    // Try to match two different patterns against the textContent of elem 
     let modifiedContent = elem.textContent,
               
         // This pattern will match just the quotes and the text they enclose in 
         // the following two examples:       
-        // - "This quotation ends with a period."
+        // - "This quotation ends with a period, but question mark or exclamation would also match."
         // - "This quotation ends with a comma," it read. 
         
         fullSentencePattern = /[\"“]\s*[A-Z][^"”“]+([\.\?\!]\s*[\"”]|,\s*[\"”](?=[^"”“]+[\.\?\!]))/g,
@@ -158,13 +158,15 @@ if(containsQuotes.length > 0)
 
     if (fullSentenceMatches){
       fullSentenceMatches.forEach(function(match){
-        getValidPost().then(replaceFullSentence.bind(null, match, elem))
+        getValidPostTitle()
+          .then(replaceFullSentence.bind(null, match, elem))
       });
     }
     
     if (hiatusMatches){
       hiatusMatches.forEach(function(match){
-        getValidPost().then(replaceHiatus.bind(null, match, elem))
+        getValidPostTitle()
+          .then(replaceHiatus.bind(null, match, elem))
       });
     }
     
