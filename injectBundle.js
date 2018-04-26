@@ -118,7 +118,7 @@ function replaceHiatus(quoteMatch, containingElem, replacement){
 
 // Collect all the elements we're interested in into a single array
 var textElements = [];
-var tagsToCheck = ["h1","h2","h3","h4","h5","p","li"];
+var tagsToCheck = ["h1","h2","h3","h4","h5","p","li","div", "span"];
 
 tagsToCheck.forEach(function(tag){
   document.querySelectorAll(tag).forEach(function(elem){
