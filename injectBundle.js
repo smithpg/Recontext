@@ -131,6 +131,11 @@ var containsQuotes = textElements.filter(function(elem){
   return (elem.textContent.includes('"') || elem.textContent.includes('“'));
 })
 
+// Sometimes an element's textContent can end up containing
+// the text of a script or style. We don't want those.
+
+containsQuotes = containsQuotes.filter(function(elem){return !(elem.textContent.match(/<.*>/)||div.textContent.match(/{(.*:.*;\s)+}/));});
+
 // If there are any quotes on the page, continue ...
 if(containsQuotes.length > 0)
 {
