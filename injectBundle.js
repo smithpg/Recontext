@@ -61,7 +61,7 @@ function replaceFullSentence(quoteMatch, containingElem, replacement){
 
   console.log("match: ", quoteMatch, "containingElem: ", containingElem, "replacement: ", replacement);
   
-  containingElem.textContent = String(containingElem.textContent).replace(quoteMatch, replacement);
+  containingElem.innerHTML = String(containingElem.innerHTML).replace(quoteMatch, replacement);
 }
 
 function replaceHiatus(quoteMatch, containingElem, replacement){
@@ -118,7 +118,7 @@ function replaceHiatus(quoteMatch, containingElem, replacement){
 
 // Collect all the elements we're interested in into a single array
 var textElements = [];
-var tagsToCheck = ["h1","h2","h3","h4","h5","p","li","div", "span"];
+var tagsToCheck = ["h1","h2","h3","h4","h5","p","li","span"];
 
 tagsToCheck.forEach(function(tag){
   document.querySelectorAll(tag).forEach(function(elem){
@@ -140,8 +140,8 @@ containsQuotes = containsQuotes.filter(function(elem){return !(elem.textContent.
 if(containsQuotes.length > 0)
 {
   containsQuotes.forEach(function(elem){
-    // Try to match two different patterns against the textContent of elem 
-    let modifiedContent = elem.textContent,
+    // Try to match two different patterns against the innerHTML of elem 
+    let modifiedContent = elem.innerHTML,
               
         // This pattern will match just the quotes and the text they enclose in 
         // the following two examples:       
@@ -158,8 +158,8 @@ if(containsQuotes.length > 0)
 
         hiatusPattern = /[\"“]\s*[A-Z][^"”“]+,["”][^"”“]+,\s*["“][^"”“]+[\.\?\!]\s*["”]/g;
  
-    let fullSentenceMatches = elem.textContent.match(fullSentencePattern),
-        hiatusMatches = elem.textContent.match(hiatusPattern);
+    let fullSentenceMatches = elem.innerHTML.match(fullSentencePattern),
+        hiatusMatches = elem.innerHTML.match(hiatusPattern);
 
     if (hiatusMatches){
       hiatusMatches.forEach(function(match){
