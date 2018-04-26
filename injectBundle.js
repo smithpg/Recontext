@@ -134,7 +134,7 @@ var containsQuotes = textElements.filter(function(elem){
 // Sometimes an element's textContent can end up containing
 // the text of a script or style. We don't want those.
 
-containsQuotes = containsQuotes.filter(function(elem){return !(elem.textContent.match(/<.*>/)||div.textContent.match(/{(.*:.*;\s)+}/));});
+containsQuotes = containsQuotes.filter(function(elem){return !(elem.textContent.match(/<.*>/)||elem.textContent.match(/{(.*:.*\s)+}/));});
 
 // If there are any quotes on the page, continue ...
 if(containsQuotes.length > 0)
@@ -161,20 +161,19 @@ if(containsQuotes.length > 0)
     let fullSentenceMatches = elem.textContent.match(fullSentencePattern),
         hiatusMatches = elem.textContent.match(hiatusPattern);
 
-    if (fullSentenceMatches){
-      fullSentenceMatches.forEach(function(match){
-        getValidPostTitle()
-          .then(replaceFullSentence.bind(null, match, elem))
-      });
-    }
-    
     if (hiatusMatches){
       hiatusMatches.forEach(function(match){
         getValidPostTitle()
           .then(replaceHiatus.bind(null, match, elem))
       });
     }
-    
+      
+    if (fullSentenceMatches){
+      fullSentenceMatches.forEach(function(match){
+        getValidPostTitle()
+          .then(replaceFullSentence.bind(null, match, elem))
+      });
+    }
   })
 }
 },{"reddit.js":2}],2:[function(require,module,exports){
